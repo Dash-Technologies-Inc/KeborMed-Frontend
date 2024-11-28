@@ -3,7 +3,7 @@
 .left-content {
   flex: 1; /* Occupies remaining space to push the right-content */
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 /* Right content (buttons) */
@@ -26,4 +26,12 @@ button {
   &:hover {
     background-color: #0056b3;
   }
+}
+.btn-primary {
+  background-color: #563E7C;
+  color: #fff;
+}
+.btn-secondary {
+  background-color: #434343;
+  color: #fff;
 }

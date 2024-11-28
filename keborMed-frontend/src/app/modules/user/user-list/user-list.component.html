@@ -7,7 +7,7 @@
 
   <!-- User List -->
   <ng-container *ngIf="users.length > 0; else noUsers">
-    <table cdk-table [dataSource]="users" class="custom-table">
+    <table cdk-table [dataSource]="users" class="custom-table table-hovered table-striped">
       <!-- Full Name Column -->
       <ng-container cdkColumnDef="fullName">
         <th cdk-header-cell *cdkHeaderCellDef> Full Name </th>

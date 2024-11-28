@@ -7,12 +7,11 @@
 /* Sidebar styles */
 app-sidebar {
   width: 250px;
-  background-color: #e3f2fd; /* Light blue */
+  background-color: #563E7C; /* Light blue */
   flex-shrink: 0;
-  border-right: 1px solid #dee2e6;
   display: flex;
   flex-direction: column;
-  padding: 20px 0; /* Optional padding */
+  padding: 0; /* Optional padding */
 }
 
 /* Main content container */
@@ -26,7 +25,7 @@ app-sidebar {
 /* Sub-navbar styles */
 app-sub-navbar {
   height: 60px;
-  background-color: #fff3cd; /* Light yellow */
+  background-color: whitesmoke; /* Light yellow */
   display: flex;
   align-items: center;
   justify-content: space-between; /* Align contextual menu to the right */
@@ -38,6 +37,6 @@ app-sub-navbar {
 .content {
   flex: 1;
   padding: 20px;
-  background-color: #f3e5f5; /* Light purple */
+  background-color: #F0F0F2; /* Light purple */
   overflow-y: auto;
 }

@@ -3,7 +3,8 @@
   flex-direction: column;
   padding: 20px;
   background-color: #fafafa;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 10px;
 }
 
 /* Summary Row Styles */
@@ -33,7 +34,7 @@
   margin: 10px 0 0;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #007bff;
+  color: #563E7C;
 }
 
 /* Table Styles */
@@ -42,9 +43,9 @@
 }
 
 .details h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #563E7C;
 }
 
 .custom-table {
@@ -59,11 +60,12 @@
   padding: 12px;
   text-align: left;
   border: 1px solid #ddd;
+  font-size: 14px;
 }
 
 .custom-table th {
   background-color: #f4f4f4;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .custom-table tr:nth-child(even) {
