@@ -1,0 +1,33 @@
+nav {
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: block;
+  cursor: pointer; /* Ensure clickable */
+  transition: background-color 0.2s;
+}
+
+a:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+a.active {
+  background-color: #0056b3;
+  color: white;
+}
