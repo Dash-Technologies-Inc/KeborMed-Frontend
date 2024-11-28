@@ -1,4 +1,35 @@
 <div class="dashboard">
-    <h2>Home Page</h2>
+  <!-- Summary Row -->
+  <div class="summary-row">
+    <div class="card">
+      <h2>Total Users</h2>
+      <p>{{ totalUsers }}</p>
+    </div>
+    <div class="card">
+      <h2>Total Companies</h2>
+      <p>{{ totalCompanies }}</p>
+    </div>
   </div>
-  
+
+  <!-- Details Section -->
+  <div class="details">
+    <h2>Users Per Company</h2>
+    <table cdk-table [dataSource]="dataSource" class="custom-table">
+      <!-- Company Name Column -->
+      <ng-container cdkColumnDef="companyName">
+        <th cdk-header-cell *cdkHeaderCellDef> Company Name </th>
+        <td cdk-cell *cdkCellDef="let element"> {{ element.companyName }} </td>
+      </ng-container>
+
+      <!-- Number of Users Column -->
+      <ng-container cdkColumnDef="numberOfUsers">
+        <th cdk-header-cell *cdkHeaderCellDef> Number of Users </th>
+        <td cdk-cell *cdkCellDef="let element"> {{ element.numberOfUsers }} </td>
+      </ng-container>
+
+      <!-- Header and Row Definitions -->
+      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

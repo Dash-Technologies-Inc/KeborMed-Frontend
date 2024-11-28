@@ -5,6 +5,7 @@ import { UserComponent } from './user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
+import { CdkTableModule } from '@angular/cdk/table';
 
 @NgModule({
   declarations: [UserComponent,UserListComponent],
@@ -12,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     HttpClientModule,
     MatButtonModule,
+    CdkTableModule,
     RouterModule.forChild([
       { path: '', component: UserComponent },
     ]),

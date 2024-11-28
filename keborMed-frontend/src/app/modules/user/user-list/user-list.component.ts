@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { User } from '../user.model';
 
 @Component({
@@ -13,13 +12,9 @@ export class UserListComponent {
   @Output() userSelected = new EventEmitter<User>();
   @Output() actionButtonClick = new EventEmitter<{ action: string; user: User }>();
 
-  isSmallScreen = false;
+  displayedColumns: string[] = ['fullName', 'age', 'gender', 'email', 'phone', 'actions']; // Updated columns
 
-  constructor(private breakpointObserver: BreakpointObserver) {
-    // Use Angular CDK Layout to observe screen size changes
-    this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.Handset]).subscribe((result) => {
-      this.isSmallScreen = result.matches;
-    });
+  constructor() {
   }
 
   onSelectUser(user: User): void {
