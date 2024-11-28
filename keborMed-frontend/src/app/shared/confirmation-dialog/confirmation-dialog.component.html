@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+  <p>{{ data.message }}</p>
+  <ng-container *ngIf="data.requireInput">
+    <mat-form-field appearance="outline" style="width: 100%">
+      <mat-label>Type "{{ data.expectedInput }}" to confirm</mat-label>
+      <input matInput [(ngModel)]="inputValue" />
+    </mat-form-field>
+  </ng-container>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">No</button>
+  <button
+    mat-raised-button
+    color="warn"
+    [disabled]="data.requireInput && inputValue !== data.expectedInput"
+    (click)="onConfirm()"
+  >
+    Yes
+  </button>
+</mat-dialog-actions>

@@ -1,9 +1,10 @@
 <app-navbar></app-navbar>
-<app-sub-navbar></app-sub-navbar>
-
 <div class="layout-container">
   <app-sidebar></app-sidebar>
-  <div class="content">
-    <router-outlet></router-outlet> <!-- Required for routing to work -->
+  <div class="main-content">
+    <app-sub-navbar></app-sub-navbar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

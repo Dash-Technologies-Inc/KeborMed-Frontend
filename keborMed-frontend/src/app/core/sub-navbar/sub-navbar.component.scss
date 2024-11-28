@@ -1,22 +1,29 @@
-.sub-navbar {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #dee2e6;
-  }
-  
-  button {
-    margin: 0 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
+
+/* Left content (text or any other element) */
+.left-content {
+  flex: 1; /* Occupies remaining space to push the right-content */
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Right content (buttons) */
+.right-content {
+  display: flex; /* Align buttons horizontally */
+  gap: 10px; /* Space between buttons */
+  align-items: center; /* Vertically center buttons */
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+
+  &:hover {
     background-color: #0056b3;
   }
-  
+}
