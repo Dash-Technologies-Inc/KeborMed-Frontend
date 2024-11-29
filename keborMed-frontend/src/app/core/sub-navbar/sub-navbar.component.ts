@@ -27,7 +27,7 @@ export class SubNavbarComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.userStore.addUser(result); // Add user
+        this.userStore.addUser(result.data); // Add user
       }
     });
   }

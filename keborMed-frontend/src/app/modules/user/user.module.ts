@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslateModule } from '@ngx-translate/core';
 import { UserComponent } from './view-page/user.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [UserComponent,UserListComponent,UserFormComponent],
@@ -20,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TranslateModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule,
     RouterModule.forChild([
       { path: '', component: UserComponent },
     ]),

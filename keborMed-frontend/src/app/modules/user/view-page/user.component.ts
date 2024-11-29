@@ -50,10 +50,10 @@ export class UserComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        if (mode === 'create') {
-          this.userStore.addUser (result); // Add user
-        } else if (mode === 'edit') {
-          this.userStore.updateUser(result); // Update user
+        if (result.mode === 'create') {
+          this.userStore.addUser (result.data); // Add user
+        } else if (result.mode === 'edit') {
+          this.userStore.updateUser(result.data); // Update user
         }
       }
     });

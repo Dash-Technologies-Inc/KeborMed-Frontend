@@ -45,10 +45,15 @@ export class UserFormComponent implements OnInit {
   onSave(): void {
     if (this.userForm.valid) {
       const formData = this.userForm.getRawValue(); // Get values, including disabled fields
-      this.dialogRef.close(formData); // Pass the form data back
+      this.dialogRef.close({data :formData,mode :this.mode}); // Pass the form data back
     } else {
       this.userForm.markAllAsTouched(); // Show validation errors
     }
+  }
+  
+  editMode()
+  {
+     this.mode = "edit";
   }
 
   onClose(): void {

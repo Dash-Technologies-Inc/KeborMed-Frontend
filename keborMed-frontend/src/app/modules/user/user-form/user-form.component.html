@@ -94,9 +94,14 @@
     <p><strong>Gender:</strong> {{ user?.gender }}</p>
     <p><strong>Age:</strong> {{ user?.age }}</p>
     <p><strong>Date of Birth:</strong> {{ user?.birthDate | date: 'mediumDate' }}</p>
-
+  
     <div class="view-action">
-      <button mat-raised-button color="primary" type="button" (click)="onClose()">Close</button>
+      <button mat-raised-button color="primary" type="button" (click)="editMode()">
+        <mat-icon>edit</mat-icon> Edit
+      </button>
+      <button mat-raised-button color="warn" type="button" (click)="onClose()">Cancel</button>
+
     </div>
   </div>
+  
 </div>
