@@ -39,12 +39,7 @@
         <td cdk-cell *cdkCellDef="let user"> {{ formatDate(user.birthDate) }} </td>
       </ng-container>
       
-      <!-- Phone Column -->
-      <ng-container cdkColumnDef="phone">
-        <th cdk-header-cell *cdkHeaderCellDef> Phone </th>
-        <td cdk-cell *cdkCellDef="let user"> {{ user.phone }} </td>
-      </ng-container>
-
+  
       <!-- Actions Column -->
       <ng-container cdkColumnDef="actions">
         <th cdk-header-cell *cdkHeaderCellDef> Actions </th>

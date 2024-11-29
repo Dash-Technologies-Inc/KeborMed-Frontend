@@ -1,8 +1,9 @@
 <div class="user-container">
+  
+  <!-- User List -->
   <app-user-list
     [users]="(users$ | async) ?? []"
     [actionButtons]="actionButtons"
-    (userSelected)="onUserSelected($event)"
     (actionButtonClick)="onActionButtonClick($event)"
   ></app-user-list>
-</div>
+

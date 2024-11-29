@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../user.model';
 import { SettingsService } from '../../settings/settings.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -14,9 +15,11 @@ export class UserListComponent {
   @Output() userSelected = new EventEmitter<User>();
   @Output() actionButtonClick = new EventEmitter<{ action: string; user: User }>();
 
-  displayedColumns: string[] = ['fullName', 'age', 'gender', 'email','birthDate','phone', 'actions']; // Updated columns
+  displayedColumns: string[] = ['fullName', 'age', 'gender', 'email','birthDate', 'actions']; // Updated columns
 
-  constructor(private settingsService : SettingsService) {
+  constructor(private settingsService : SettingsService,
+    private userService : UserService
+  ) {
     this.currentDateFormat = this.settingsService.loadSettings().dateFormat;
   }
 
@@ -29,17 +32,7 @@ export class UserListComponent {
   }
 
   formatDate(date: string): string {
-    const [year, month, day] = date.split('-'); // Assuming date format is YYYY-MM-DD
-    switch (this.currentDateFormat) {
-      case 'YYYY/MM/DD':
-        return `${year}/${month}/${day}`;
-      case 'DD/MM/YYYY':
-        return `${day}/${month}/${year}`;
-      case 'MM-DD-YYYY':
-        return `${month}-${day}-${year}`;
-      default:
-        return date;
-    }
+        return this.userService.formatDate(date);
   }
 
   getButtonColor(action: string): string {

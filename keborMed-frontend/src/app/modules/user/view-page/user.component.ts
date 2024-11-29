@@ -5,6 +5,7 @@ import { ConfirmationDialogComponent } from '../../../shared/confirmation-dialog
 import { User } from '../user.model';
 import { UserService } from '../user.service';
 import { UserStore } from '../user.store';
+import { UserFormComponent } from '../user-form/user-form.component';
 
 @Component({
   selector: 'app-user',
@@ -16,6 +17,7 @@ export class UserComponent implements OnInit {
   actionButtons = [
     { label: 'Delete', action: 'delete' },
     { label: 'View Details', action: 'viewDetails' },
+    { label: 'Edit', action: 'edit' },
   ];
 
   constructor(
@@ -30,27 +32,41 @@ export class UserComponent implements OnInit {
     this.userService.fetchUsers().subscribe();
   }
 
-  // Handle user selection (click on user)
-  onUserSelected(user: User): void {
-    console.log('User selected:', user);
-    // Add logic for user selection if needed
-  }
-
   // Handle action button clicks
   onActionButtonClick(event: { action: string; user: User }): void {
     if (event.action === 'delete') {
       this.confirmDeleteUser(event.user.id);
-    } else if (event.action === 'viewDetails') {
-      this.viewUserDetails(event.user);
+    } else {
+      this.openUserDialog(event.action, event.user);
     }
   }
 
+  // Open dialog for create, view, or edit actions
+  openUserDialog(mode:string, user: User | null = null): void {
+    const dialogRef = this.dialog.open(UserFormComponent, {
+      width: '500px',
+      data: { mode, user },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (mode === 'create') {
+          this.userStore.addUser (result); // Add user
+        } else if (mode === 'edit') {
+          this.userStore.updateUser(result); // Update user
+        }
+      }
+    });
+  }
+
+  
+
   private confirmDeleteUser(userId: number): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: { 
-        title: 'Delete User', 
-        message: 'Are you sure you want to delete this user?'
-       },
+      data: {
+        title: 'Delete User',
+        message: 'Are you sure you want to delete this user?',
+      },
     });
 
     dialogRef.afterClosed().subscribe((confirmed) => {
@@ -58,9 +74,5 @@ export class UserComponent implements OnInit {
         this.userStore.deleteUser(userId);
       }
     });
-  }
-
-  private viewUserDetails(user: User): void {
-    alert(`User Details:\n\nName: ${user.name}\nEmail: ${user.email}`);
   }
 }
