@@ -1,0 +1,27 @@
+<div class="settings-container">
+  <h2>{{ 'Settings' | translate }}</h2>
+
+  <!-- Language Selection -->
+  <label for="language-select">{{ 'Site Language:' | translate }}</label>
+  <select
+    id="language-select"
+    [(ngModel)]="currentSettings.language"
+    (change)="onLanguageChange($event)"
+  >
+    <option *ngFor="let lang of languages" [value]="lang.value">
+      {{ lang.label }}
+    </option>
+  </select>
+
+  <!-- Date Format Selection -->
+  <label for="date-format-select">{{ 'Date Format:' | translate }}</label>
+  <select
+    id="date-format-select"
+    [(ngModel)]="currentSettings.dateFormat"
+    (change)="onDateFormatChange($event)"
+  >
+    <option *ngFor="let format of dateFormats" [value]="format">
+      {{ format }}
+    </option>
+  </select>
+</div>

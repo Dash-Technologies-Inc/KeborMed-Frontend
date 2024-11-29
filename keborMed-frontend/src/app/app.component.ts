@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './core/layout/layout.component';
-import { HttpClientModule } from '@angular/common/http';
+import { SettingsService } from './modules/settings/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor() {
-  
+  constructor(private settingsService: SettingsService) {
+  // Initialize settings when the app loads
+  this.settingsService.loadSettings();
   }
 }

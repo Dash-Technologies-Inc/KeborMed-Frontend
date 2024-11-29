@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { map, Observable } from 'rxjs';
-import { UserService } from './user.service';
-import { UserStore } from './user.store';
-import { User } from './user.model';
-import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../../../shared/confirmation-dialog/confirmation-dialog.component';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
+import { UserStore } from '../user.store';
 
 @Component({
   selector: 'app-user',
@@ -47,7 +47,10 @@ export class UserComponent implements OnInit {
 
   private confirmDeleteUser(userId: number): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: { title: 'Delete User', message: 'Are you sure you want to delete this user?' },
+      data: { 
+        title: 'Delete User', 
+        message: 'Are you sure you want to delete this user?'
+       },
     });
 
     dialogRef.afterClosed().subscribe((confirmed) => {

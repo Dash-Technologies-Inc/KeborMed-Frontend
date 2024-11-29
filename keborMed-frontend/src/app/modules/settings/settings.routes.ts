@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { SettingsComponent } from './settings.component';
+import { SettingsComponent } from './view-page/settings.component';
 
 export const SETTINGS_ROUTES: Routes = [
   {
@@ -7,3 +7,4 @@ export const SETTINGS_ROUTES: Routes = [
     component: SettingsComponent,
   },
 ];
+

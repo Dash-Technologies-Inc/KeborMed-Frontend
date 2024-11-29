@@ -1,8 +1,8 @@
 <div class="user-list-container">
   <!-- Header Section -->
   <div class="header-section">
-    <h2>User List</h2>
-    <p>Total Users: {{ users.length }}</p>
+    <h2>{{'User'| translate}} List</h2>
+    <p>{{'Total Companies'| translate }} {{ users.length }}</p>
   </div>
 
   <!-- User List -->
@@ -34,6 +34,11 @@
         </td>
       </ng-container>
 
+      <ng-container cdkColumnDef="birthDate">
+        <th cdk-header-cell *cdkHeaderCellDef> DOB </th>
+        <td cdk-cell *cdkCellDef="let user"> {{ formatDate(user.birthDate) }} </td>
+      </ng-container>
+      
       <!-- Phone Column -->
       <ng-container cdkColumnDef="phone">
         <th cdk-header-cell *cdkHeaderCellDef> Phone </th>
