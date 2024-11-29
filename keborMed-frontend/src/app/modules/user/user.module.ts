@@ -11,11 +11,15 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ImportDialogComponent } from './import-dialog/import-dialog.component';
+import { ListSearchComponent } from '../../shared/list-search/list-search.component';
+import { PaginationComponent } from '../../shared/pagination/pagination.component';
 
 @NgModule({
   declarations: [UserComponent,UserListComponent,UserFormComponent,ImportDialogComponent],
   imports: [
     CommonModule,
+    ListSearchComponent,
+    PaginationComponent,
     HttpClientModule,
     MatButtonModule,
     CdkTableModule,

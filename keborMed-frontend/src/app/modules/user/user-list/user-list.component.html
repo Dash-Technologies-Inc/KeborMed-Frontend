@@ -2,12 +2,12 @@
   <!-- Header Section -->
   <div class="header-section">
     <h2>{{'User'| translate}} List</h2>
-    <p>{{'Total Companies'| translate }} {{ users.length }}</p>
+    <p>{{'Total Users'| translate }} {{ users.length }}</p>
   </div>
 
   <!-- User List -->
   <ng-container *ngIf="users.length > 0; else noUsers">
-    <table cdk-table [dataSource]="users" class="custom-table table-hovered table-striped">
+    <table cdk-table [dataSource]="paginatedUsers" class="custom-table table-hovered table-striped">
       <!-- Full Name Column -->
       <ng-container cdkColumnDef="fullName">
         <th cdk-header-cell *cdkHeaderCellDef> Full Name </th>
@@ -38,18 +38,14 @@
         <th cdk-header-cell *cdkHeaderCellDef> DOB </th>
         <td cdk-cell *cdkCellDef="let user"> {{ formatDate(user.birthDate) }} </td>
       </ng-container>
-      
-  
+
+
       <!-- Actions Column -->
       <ng-container cdkColumnDef="actions">
         <th cdk-header-cell *cdkHeaderCellDef> Actions </th>
         <td cdk-cell *cdkCellDef="let user">
-          <button
-            mat-raised-button
-            *ngFor="let action of actionButtons"
-            [color]="getButtonColor(action.action)"
-            (click)="onActionButtonClick(action, user)"
-          >
+          <button mat-raised-button *ngFor="let action of actionButtons" [color]="getButtonColor(action.action)"
+            (click)="onActionButtonClick(action, user)">
             {{ action.label }}
           </button>
         </td>
@@ -61,6 +57,9 @@
     </table>
   </ng-container>
 
+  <!-- Pagination Component -->
+  <app-pagination [totalItems]="users.length" [itemsPerPage]="itemsPerPage" [currentPage]="currentPage"
+    (pageChange)="onPageChange($event)"></app-pagination>
   <!-- No Users Template -->
   <ng-template #noUsers>
     <div class="no-users">No users found.</div>

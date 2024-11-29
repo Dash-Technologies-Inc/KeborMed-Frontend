@@ -16,11 +16,18 @@ export class UserListComponent {
   @Output() actionButtonClick = new EventEmitter<{ action: string; user: User }>();
 
   displayedColumns: string[] = ['fullName', 'age', 'gender', 'email','birthDate', 'actions']; // Updated columns
+  paginatedUsers: User[] = [];
+  currentPage: number = 1;
+  @Input() itemsPerPage: number = 10;
 
   constructor(private settingsService : SettingsService,
     private userService : UserService
   ) {
     this.currentDateFormat = this.settingsService.loadSettings().dateFormat;
+  }
+
+  ngOnChanges(): void {
+    this.updatePaginatedUsers();
   }
 
   onSelectUser(user: User): void {
@@ -45,4 +52,16 @@ export class UserListComponent {
         return 'primary';
     }
   }
+
+  updatePaginatedUsers(): void {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.paginatedUsers = this.users.slice(startIndex, endIndex);
+  }
+
+  onPageChange(newPage: number): void {
+    this.currentPage = newPage;
+    this.updatePaginatedUsers();
+  }
+
 }

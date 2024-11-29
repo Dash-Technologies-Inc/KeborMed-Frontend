@@ -1,9 +1,14 @@
 <div class="user-container">
-  
+  <!-- Search Bar -->
+  <app-list-search
+    placeholder="Search users..."
+    (search)="onSearch($event)"
+  ></app-list-search>
+
   <!-- User List -->
   <app-user-list
-    [users]="(users$ | async) ?? []"
+    [users]="filteredUsers"
     [actionButtons]="actionButtons"
     (actionButtonClick)="onActionButtonClick($event)"
   ></app-user-list>
-
+</div>

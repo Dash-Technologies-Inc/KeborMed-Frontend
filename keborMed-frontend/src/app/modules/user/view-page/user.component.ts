@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { map, Observable } from 'rxjs';
-import { ConfirmationDialogComponent } from '../../../shared/confirmation-dialog/confirmation-dialog.component';
 import { User } from '../user.model';
-import { UserService } from '../user.service';
 import { UserStore } from '../user.store';
 import { UserFormComponent } from '../user-form/user-form.component';
+import { ConfirmationDialogComponent } from '../../../shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-user',
@@ -13,7 +11,9 @@ import { UserFormComponent } from '../user-form/user-form.component';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
-  users$: Observable<User[]>;
+  allUsers: User[] = []; // Store all users
+  filteredUsers: User[] = []; // Store filtered users
+  searchQuery: string = ''; // Store current search query
   actionButtons = [
     { label: 'Delete', action: 'delete' },
     { label: 'View Details', action: 'viewDetails' },
@@ -21,15 +21,27 @@ export class UserComponent implements OnInit {
   ];
 
   constructor(
-    private userService: UserService,
     private userStore: UserStore,
     private dialog: MatDialog
-  ) {
-    this.users$ = this.userStore.selectAllUsers.pipe(map((users) => users ?? []));
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.userService.fetchUsers().subscribe();
+    // Load users and initialize both allUsers and filteredUsers
+    this.userStore.selectAllUsers.subscribe((users) => {
+      this.allUsers = users;
+      this.filteredUsers = [...users]; // Initially, show all users
+    });
+  }
+
+  // Handle search logic
+  onSearch(query: string): void {
+    this.searchQuery = query;
+    this.filteredUsers = this.allUsers.filter((user) =>
+      Object.values(user)
+        .join(' ')
+        .toLowerCase()
+        .includes(query.toLowerCase())
+    );
   }
 
   // Handle action button clicks
@@ -42,7 +54,7 @@ export class UserComponent implements OnInit {
   }
 
   // Open dialog for create, view, or edit actions
-  openUserDialog(mode:string, user: User | null = null): void {
+  openUserDialog(mode: string, user: User | null = null): void {
     const dialogRef = this.dialog.open(UserFormComponent, {
       width: '500px',
       data: { mode, user },
@@ -51,15 +63,13 @@ export class UserComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         if (result.mode === 'create') {
-          this.userStore.addUser (result.data); // Add user
+          this.userStore.addUser(result.data); // Add user
         } else if (result.mode === 'edit') {
           this.userStore.updateUser(result.data); // Update user
         }
       }
     });
   }
-
-  
 
   private confirmDeleteUser(userId: number): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
@@ -72,6 +82,7 @@ export class UserComponent implements OnInit {
     dialogRef.afterClosed().subscribe((confirmed) => {
       if (confirmed) {
         this.userStore.deleteUser(userId);
+        this.filteredUsers = this.allUsers.filter((user) => user.id !== userId); // Update filtered list
       }
     });
   }
