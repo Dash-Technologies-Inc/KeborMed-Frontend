@@ -3,6 +3,7 @@ import { User } from '../../modules/user/user.model';
 import { MatDialog } from '@angular/material/dialog';
 import { UserFormComponent } from '../../modules/user/user-form/user-form.component';
 import { UserStore } from '../../modules/user/user.store';
+import { ImportDialogComponent } from '../../modules/user/import-dialog/import-dialog.component';
 
 @Component({
   selector: 'app-sub-navbar',
@@ -19,6 +20,12 @@ export class SubNavbarComponent {
 
   }
 
+  openImportDialog(): void {
+    this.dialog.open(ImportDialogComponent, {
+      width: '600px',
+    });
+  }
+  
   openUserDialog(mode: string, user: User | null = null): void {
     const dialogRef = this.dialog.open(UserFormComponent, {
       width: '500px',

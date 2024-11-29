@@ -1,0 +1,33 @@
+.import-container {
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    width: 500px;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  input[type="file"] {
+    display: block;
+    margin-top: 8px;
+  }
+  
+  .form-info {
+    background-color: #e7f3fe;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  

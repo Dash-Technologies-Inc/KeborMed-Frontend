@@ -2,7 +2,7 @@
 <div class="layout-container">
   <app-sidebar></app-sidebar>
   <div class="main-content">
-    <app-sub-navbar></app-sub-navbar>
+    <app-sub-navbar *ngIf="currentRoute === 'user'"></app-sub-navbar>
     <div class="content">
       <router-outlet></router-outlet>
     </div>

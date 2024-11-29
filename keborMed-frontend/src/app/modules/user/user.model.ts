@@ -1,12 +1,12 @@
 export interface User {
     id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-    company : company,
-    birthDate : string;
-    gender : string;
-    age : number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    company? : company,
+    birthDate? : string;
+    gender? : string;
+    age ?: number;
   }
   
 

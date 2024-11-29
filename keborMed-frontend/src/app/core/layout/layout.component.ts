@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { SubNavbarComponent } from '../sub-navbar/sub-navbar.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -13,5 +13,13 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
+  currentRoute = '';
 
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.router.events.subscribe(() => {
+      this.currentRoute = this.router.url.split('/')[1]; // Extract route name
+    });
+  }
 }

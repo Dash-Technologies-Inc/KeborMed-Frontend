@@ -10,9 +10,10 @@ import { UserComponent } from './view-page/user.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { ImportDialogComponent } from './import-dialog/import-dialog.component';
 
 @NgModule({
-  declarations: [UserComponent,UserListComponent,UserFormComponent],
+  declarations: [UserComponent,UserListComponent,UserFormComponent,ImportDialogComponent],
   imports: [
     CommonModule,
     HttpClientModule,

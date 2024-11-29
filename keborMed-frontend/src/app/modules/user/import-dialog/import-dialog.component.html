@@ -1,0 +1,31 @@
+<div class="import-container">
+  <h2>Import Users</h2>
+  
+  <form (submit)="onImportSubmit()" class="import-form">
+    <div class="form-group">
+      <label for="fileUpload">Upload CSV File:</label>
+      <input
+        type="file"
+        id="fileUpload"
+        (change)="onFileSelected($event)"
+        accept=".csv"
+      />
+    </div>
+
+    <div class="form-info" *ngIf="parsedData?.length">
+      <p><strong>Total Users in File:</strong> {{ parsedData.length }}</p>
+      <p>
+        <strong>Unique Users (Compared to Store):</strong> {{ uniqueUsersCount }}
+      </p>
+    </div>
+
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!parsedData?.length">
+        Confirm Import
+      </button>
+      <button mat-raised-button color="warn" type="button" (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

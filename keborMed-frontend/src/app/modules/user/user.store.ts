@@ -7,6 +7,7 @@ import {
   updateEntities,
   selectAllEntities,
   addEntities,
+  upsertEntities,
 } from '@ngneat/elf-entities';
 import { persistState, localStorageStrategy } from '@ngneat/elf-persist-state';
 import { User } from './user.model';
@@ -37,18 +38,29 @@ export class UserStore {
   // Delete a user
   deleteUser = (id: number) => this.store.update(deleteEntities(id));
 
+
   // Add a single user with dynamic ID
   addUser(newUser: Partial<User>): void {
-    const users = this.selectAllUsers;
-    const newId = users.subscribe.length + 1;
-
-    // Validate and create a new user
+    // Get the current state of users
+    const currentState = this.store.getValue();
+    const currentUsers = currentState.ids.map((id) => currentState.entities[id]);
+  
+    // Generate a new ID based on the current state
+    const newId = (currentUsers.length > 0 ? Math.max(...currentUsers.map((user) => user.id)) : 0) + 1;
+  
+    // Create the new user with a dynamically generated ID
     const user: User = {
       ...newUser,
-      id: newId, // Generate ID dynamically
+      id: newId,
     } as User;
-
+  
+    // Add the new user to the store
     this.store.update(addEntities(user));
+  }
+  
+
+  addUsers(users: User[]) {
+    this.store.update(upsertEntities(users));
   }
 
   // Update a user
