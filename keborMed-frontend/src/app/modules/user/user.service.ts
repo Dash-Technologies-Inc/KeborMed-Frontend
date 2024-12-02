@@ -9,7 +9,7 @@ import { SettingsService } from '../settings/settings.service';
 export class UserService {
   private apiUrl = 'https://dummyjson.com/users';
 
-  constructor(private http: HttpClient, private userStore: UserStore,private settingsService : SettingsService) {}
+  constructor(private http: HttpClient, private userStore: UserStore, private settingsService: SettingsService) { }
 
   // Fetch users from the API and set them in the store
   fetchUsers(): Observable<User[]> {
@@ -55,4 +55,11 @@ export class UserService {
         return date;
     }
   }
+
+  getSampleCsvData() {
+    return `firstName,lastName,age,gender,email,birthDate
+John,Doe,30,male,john.doe@example.com,1993-05-15
+Jane,Smith,25,female,jane.smith@example.com,1998-02-20`;
+  }
+
 }

@@ -1,6 +1,6 @@
 <div class="user-form">
   <!-- Dynamic title -->
-  <h3>{{ mode === 'viewDetails' ? 'View User' : mode === 'edit' ? 'Edit User' : 'Create User' }}</h3>
+  <h3 style="margin-top:0;">{{ mode === 'viewDetails' ? 'View User' : mode === 'edit' ? 'Edit User' : 'Create User' }}</h3>
 
   <!-- Reactive Form -->
   <form [formGroup]="userForm" *ngIf="mode !== 'viewDetails'" class="form-container">
@@ -57,7 +57,7 @@
 
     <div class="form-group">
       <label for="gender">Gender:</label>
-      <select id="gender" formControlName="gender">
+      <select id="gender" formControlName="gender" class="form-control">
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
@@ -95,10 +95,7 @@
     <p><strong>Age:</strong> {{ user?.age }}</p>
     <p><strong>Date of Birth:</strong> {{ user?.birthDate | date: 'mediumDate' }}</p>
   
-    <div class="view-action">
-      <button mat-raised-button color="primary" type="button" (click)="editMode()">
-        <mat-icon>edit</mat-icon> Edit
-      </button>
+    <div class="">
       <button mat-raised-button color="warn" type="button" (click)="onClose()">Cancel</button>
 
     </div>

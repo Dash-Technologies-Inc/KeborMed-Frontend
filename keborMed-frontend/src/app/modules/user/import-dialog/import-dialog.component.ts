@@ -4,6 +4,7 @@ import * as Papa from 'papaparse';
 import { map, Observable } from 'rxjs';
 import { User } from '../user.model';
 import { MatDialogRef } from '@angular/material/dialog';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-import-dialog',
@@ -15,7 +16,8 @@ export class ImportDialogComponent {
   uniqueUsersCount: number = 0;
   users$: Observable<User[]>;
   constructor(private userStore: UserStore,
-    private dialogRef: MatDialogRef<ImportDialogComponent>
+    private dialogRef: MatDialogRef<ImportDialogComponent>,
+    private userService : UserService
   ) {
     this.users$ = this.userStore.selectAllUsers.pipe(map((users) => users ?? []));
   }
@@ -41,11 +43,7 @@ export class ImportDialogComponent {
         (user: User) => !existingEmails.has(user.email)
       );
       this.uniqueUsersCount = uniqueUsers.length;
-      if (uniqueUsers.length <= 0) {
-        this.parsedData = [];
-        this.uniqueUsersCount = 0;
-      }
- 
+
     })).subscribe();
   }
 
@@ -69,14 +67,26 @@ export class ImportDialogComponent {
         this.dialogRef.close();
 
       }
-      else
-      {
+      else {
         this.parsedData = [];
         this.uniqueUsersCount = 0;
       }
     })).subscribe();
   }
 
+
+  downloadSampleFile(): void {
+    let sampleData = this.userService.getSampleCsvData();
+    const blob = new Blob([sampleData], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = 'sample-users.csv';
+    anchor.click();
+
+    window.URL.revokeObjectURL(url);
+  }
 
 
   onCancel(): void {

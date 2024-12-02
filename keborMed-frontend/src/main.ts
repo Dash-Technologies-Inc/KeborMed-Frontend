@@ -32,7 +32,7 @@ bootstrapApplication(AppComponent, {
 // Enable Elf DevTools in development mode
 if (isDevMode()) {
   devTools({
-    name: 'My Angular App', // Give your application a name (optional)
+    name: 'Kebormed', // Give your application a name (optional)
     logTrace: true, // Logs stack traces for actions in the console
   });
 } else {
