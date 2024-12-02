@@ -71,18 +71,25 @@ export class UserComponent implements OnInit {
     });
   }
 
-  private confirmDeleteUser(userId: number): void {
+
+  confirmDeleteUser(userId: number): void {
+    let entityName = 'User'
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
-        title: 'Delete User',
-        message: 'Are you sure you want to delete this user?',
+        title: 'Delete ' + entityName ,
+        message: `Are you sure you want to delete "${entityName}"? This action cannot be undone.`,
+        requireInput: true,
+        expectedInput: entityName, // Entity name to be typed as confirmation
       },
     });
-
-    dialogRef.afterClosed().subscribe((confirmed) => {
-      if (confirmed) {
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result?.confirmed) {
+        console.log('Entity deleted:', entityName);
         this.userStore.deleteUser(userId);
         this.filteredUsers = this.allUsers.filter((user) => user.id !== userId); // Update filtered list
+      } else {
+        console.log('Deletion cancelled');
       }
     });
   }

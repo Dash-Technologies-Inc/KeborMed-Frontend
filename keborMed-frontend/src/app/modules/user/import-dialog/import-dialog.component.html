@@ -1,6 +1,11 @@
 <div class="import-container">
   <h2>Import Users</h2>
 
+  <!-- Error Message -->
+  <div class="error-message" *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </div>
+
   <form (submit)="onImportSubmit()" class="import-form">
     <div class="form-group">
       <label for="fileUpload">Upload CSV File:</label>
@@ -18,13 +23,13 @@
       <button mat-raised-button color="primary" type="submit" [disabled]="!parsedData.length || uniqueUsersCount <= 0">
         Confirm Import
       </button>
-
       <button mat-raised-button color="accent" type="button" (click)="downloadSampleFile()">
-        Download Sample File
+        Download Sample
       </button>
       <button mat-raised-button color="warn" type="button" (click)="onCancel()">
         Cancel
       </button>
+
     </div>
   </form>
 </div>

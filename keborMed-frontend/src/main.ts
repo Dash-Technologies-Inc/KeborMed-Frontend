@@ -3,13 +3,14 @@ import { AppComponent } from './app/app.component';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { devTools } from '@ngneat/elf-devtools';
 import { importProvidersFrom, isDevMode } from '@angular/core';
 import { enableElfProdMode } from '@ngneat/elf';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { HttpErrorInterceptorFn } from './app/shared/error-handler/http-error.interceptor';
 
 // Factory function for HTTP loader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -18,7 +19,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([HttpErrorInterceptorFn])),
     importProvidersFrom([TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -11,21 +11,36 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule,FormsModule,MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './confirmation-dialog.component.html',
-  styleUrl: './confirmation-dialog.component.scss'
+  styleUrls: ['./confirmation-dialog.component.scss'],
 })
 export class ConfirmationDialogComponent {
-  inputValue = '';
+  inputValue = ''; // For input-based confirmation
 
   constructor(
     public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { title: string; message: string; requireInput?: boolean; expectedInput?: string }
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      title: string; // Title for the dialog
+      message: string; // Message for the dialog
+      requireInput?: boolean; // If input is required for confirmation
+      expectedInput?: string; // The input text required to confirm
+    }
   ) {}
 
   onCancel(): void {
-    this.dialogRef.close(false);
+    this.dialogRef.close(false); // Close the dialog without confirmation
   }
 
   onConfirm(): void {
-    this.dialogRef.close(true);
+    // Close the dialog with a confirmation
+    this.dialogRef.close({
+      confirmed: true,
+      inputValue: this.inputValue,
+    });
+  }
+
+  isConfirmDisabled() {
+    // Disable the confirm button if input validation is required and doesn't match
+    return this.data.requireInput && this.inputValue !== this.data.expectedInput;
   }
 }
