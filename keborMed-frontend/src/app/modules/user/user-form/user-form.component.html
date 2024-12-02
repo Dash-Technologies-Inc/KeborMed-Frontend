@@ -1,11 +1,13 @@
 <div class="user-form">
-  <!-- Dynamic title -->
-  <h3 style="margin-top:0;">{{ mode === 'viewDetails' ? 'View User' : mode === 'edit' ? 'Edit User' : 'Create User' }}</h3>
+  <!-- Dynamic Title -->
+  <h3>{{ mode === 'viewDetails' ? 'View User' : mode === 'edit' ? 'Edit User' : 'Create User' }}</h3>
 
-  <!-- Reactive Form -->
-  <form [formGroup]="userForm" *ngIf="mode !== 'viewDetails'" class="form-container">
+  <form [formGroup]="userForm" class="form-container" *ngIf="mode != 'viewDetails'">
+    <!-- First Name -->
     <div class="form-group">
-      <label for="firstName">First Name:</label>
+      <label for="firstName">
+        First Name: <span class="required">*</span>
+      </label>
       <input
         id="firstName"
         formControlName="firstName"
@@ -17,8 +19,11 @@
       </div>
     </div>
 
+    <!-- Last Name -->
     <div class="form-group">
-      <label for="lastName">Last Name:</label>
+      <label for="lastName">
+        Last Name: <span class="required">*</span>
+      </label>
       <input
         id="lastName"
         formControlName="lastName"
@@ -30,8 +35,11 @@
       </div>
     </div>
 
+    <!-- Email -->
     <div class="form-group">
-      <label for="email">Email:</label>
+      <label for="email">
+        Email: <span class="required">*</span>
+      </label>
       <input
         id="email"
         formControlName="email"
@@ -39,25 +47,27 @@
         placeholder="Enter email"
       />
       <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="error">
-        Valid email is required.
+        A valid email is required.
       </div>
     </div>
 
+    <!-- Date of Birth -->
     <div class="form-group">
-      <label for="dob">Date of Birth:</label>
-      <input
-        id="dob"
-        formControlName="birthDate"
-        type="date"
-      />
+      <label for="dob">
+        Date of Birth: <span class="required">*</span>
+      </label>
+      <input id="dob" formControlName="birthDate" type="date" />
       <div *ngIf="userForm.get('birthDate')?.invalid && userForm.get('birthDate')?.touched" class="error">
         Date of Birth is required.
       </div>
     </div>
 
+    <!-- Gender -->
     <div class="form-group">
-      <label for="gender">Gender:</label>
-      <select id="gender" formControlName="gender" class="form-control">
+      <label for="gender">
+        Gender: <span class="required">*</span>
+      </label>
+      <select id="gender" formControlName="gender">
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
@@ -66,8 +76,11 @@
       </div>
     </div>
 
+    <!-- Age -->
     <div class="form-group">
-      <label for="age">Age:</label>
+      <label for="age">
+        Age: <span class="required">*</span>
+      </label>
       <input
         id="age"
         formControlName="age"
@@ -79,12 +92,15 @@
       </div>
     </div>
 
-    <!-- Action buttons -->
+    <!-- Action Buttons -->
     <div class="action-buttons">
       <button mat-raised-button color="primary" type="button" (click)="onSave()">Save</button>
       <button mat-raised-button color="warn" type="button" (click)="onClose()">Cancel</button>
     </div>
   </form>
+
+
+
 
   <!-- Display user details for 'viewDetails' mode -->
   <div *ngIf="mode === 'viewDetails'" class="view-container">
@@ -100,5 +116,4 @@
 
     </div>
   </div>
-  
 </div>

@@ -1,18 +1,18 @@
 .user-form {
-  max-width: 600px; /* Increase modal width */
-  width: auto; /* Make it responsive */
-  max-height: 90%; /* Ensure it doesn't overflow the screen */
-  margin: 0;
-  padding: 30px;
+  max-width: 600px;
+  width: 90%; /* Responsive width */
+  margin: auto;
+  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   font-family: 'Roboto', Arial, sans-serif;
-  overflow-y: auto;
+  overflow-y: auto; /* Allow vertical scrolling */
+  max-height: 90vh; /* Ensure it doesn't overflow the viewport */
 
-  .form-title {
+  h3 {
     text-align: center;
-    font-size: 24px; /* Larger title font */
+    font-size: 24px;
     font-weight: bold;
     color: #333;
     margin-bottom: 20px;
@@ -21,7 +21,7 @@
   .form-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 
     .form-group {
       display: flex;
@@ -30,40 +30,54 @@
       label {
         font-size: 16px;
         font-weight: 600;
-        margin-bottom: 8px;
+        margin-bottom: 5px;
+
+        .required {
+          color: red; /* Asterisk in red */
+          font-weight: bold;
+        }
       }
 
-      input, select {
-        padding: 12px;
+      input,
+      select {
+        padding: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
-        font-size: 16px;
+        font-size: 14px;
         outline: none;
-        transition: border-color 0.3s;
 
         &:focus {
           border-color: #007bff;
         }
       }
+
+      input[type='date'] {
+        font-family: inherit; /* Ensure consistent styling across browsers */
+      }
+    }
+
+    .error {
+      font-size: 12px;
+      color: red;
+      margin-top: 3px;
     }
   }
 
   .action-buttons {
     display: flex;
     justify-content: space-between;
-    gap: 15px;
+    gap: 10px;
 
     button {
       flex: 1;
-      padding: 12px 16px;
-      font-size: 16px;
+      padding: 10px 15px;
+      font-size: 14px;
       font-weight: bold;
       border-radius: 4px;
       border: none;
       cursor: pointer;
-      transition: background-color 0.3s;
 
-      &.mat-raised-button[color="primary"] {
+      &.mat-raised-button[color='primary'] {
         background-color: #007bff;
         color: white;
 
@@ -72,7 +86,7 @@
         }
       }
 
-      &.mat-raised-button[color="warn"] {
+      &.mat-raised-button[color='warn'] {
         background-color: #dc3545;
         color: white;
 
@@ -84,19 +98,22 @@
   }
 
   .view-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
     p {
-      margin: 12px 0;
-      font-size: 16px;
-      color: #555;
+      font-size: 14px;
+      margin: 5px 0;
     }
 
     .view-action {
       text-align: center;
-      margin-top: 16px;
 
       button {
-        padding: 12px 16px;
-        font-size: 16px;
+        margin-top: 10px;
+        padding: 10px 15px;
+        font-size: 14px;
         font-weight: bold;
         color: white;
         background-color: #007bff;
@@ -109,35 +126,4 @@
       }
     }
   }
-}
-
-.view-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-}
-
-.view-action {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  font-size: 14px;
-}
-
-
-
-
-.error {
-  font-size: 12px;
-  color: red;
-  margin-top: 2px;
 }
