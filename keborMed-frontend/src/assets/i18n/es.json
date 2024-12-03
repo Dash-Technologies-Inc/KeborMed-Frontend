@@ -7,8 +7,14 @@
     "Users": "Usuarios",
     "Total Users": "Usuarios Totales",
     "Total Companies": "Empresas Totales",
+    "Company":"Empresas",
     "Create": "Crear",
     "Import": "Importar",
-    "KeborMed": "KeborMed"
+    "KeborMed": "KeborMed",
+    "numberOfUsers": "Número de Usuarios",
+    "companyName": "Nombre de la Empresa",
+    "create": "Crear",
+    "import": "Importar"
+
   }
   

@@ -18,7 +18,7 @@ export class UserListComponent {
   displayedColumns: string[] = ['fullName', 'age', 'gender', 'email','birthDate', 'actions']; // Updated columns
   paginatedUsers: User[] = [];
   currentPage: number = 1;
-  @Input() itemsPerPage: number = 10;
+  @Input() itemsPerPage: number = 5;
 
   constructor(private settingsService : SettingsService,
     private userService : UserService

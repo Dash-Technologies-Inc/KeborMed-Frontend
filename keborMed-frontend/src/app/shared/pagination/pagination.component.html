@@ -1,17 +1,31 @@
 <div class="pagination-container">
+  <!-- Previous Button -->
+  <button
+    mat-button
+    [disabled]="currentPage === 1"
+    (click)="onPageChange(currentPage - 1)"
+  >
+    Previous
+  </button>
+
+  <!-- Page Numbers -->
+  <div class="page-numbers">
     <button
+      *ngFor="let page of pageNumbers"
       mat-button
-      [disabled]="currentPage === 1"
-      (click)="onPageChange(currentPage - 1)"
+      [class.active]="isPageActive(page)"
+      (click)="onPageChange(page)"
     >
-      Previous
-    </button>
-    <span>Page {{ currentPage }} of {{ totalPages }}</span>
-    <button
-      mat-button
-      [disabled]="currentPage === totalPages"
-      (click)="onPageChange(currentPage + 1)"
-    >
-      Next
+      {{ page }}
     </button>
   </div>
+
+  <!-- Next Button -->
+  <button
+    mat-button
+    [disabled]="currentPage === totalPages"
+    (click)="onPageChange(currentPage + 1)"
+  >
+    Next
+  </button>
+</div>

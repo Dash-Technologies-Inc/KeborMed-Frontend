@@ -8,6 +8,12 @@
     "Total Companies": "Toplam Şirket",
     "Create": "Oluştur",
     "Import": "İçe Aktar",
-    "KeborMed": "KeborMed"
+    "KeborMed": "KeborMed",
+    "Company":"Şirket",
+    "numberOfUsers": "Kullanıcı Sayısı",
+    "companyName": "Şirket Adı",
+    "create": "Oluştur",
+    "import": "İçe Aktar"
+
   }
   

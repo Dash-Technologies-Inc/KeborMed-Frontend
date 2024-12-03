@@ -109,7 +109,7 @@
     <p><strong>Email:</strong> {{ user?.email }}</p>
     <p><strong>Gender:</strong> {{ user?.gender }}</p>
     <p><strong>Age:</strong> {{ user?.age }}</p>
-    <p><strong>Date of Birth:</strong> {{ user?.birthDate | date: 'mediumDate' }}</p>
+    <p><strong>Date of Birth:</strong>  {{ formatDate(user?.birthDate) }}</p>
   
     <div class="">
       <button mat-raised-button color="warn" type="button" (click)="onClose()">Cancel</button>

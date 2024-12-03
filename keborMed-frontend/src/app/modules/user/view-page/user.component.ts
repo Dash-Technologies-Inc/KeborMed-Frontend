@@ -47,7 +47,7 @@ export class UserComponent implements OnInit {
   // Handle action button clicks
   onActionButtonClick(event: { action: string; user: User }): void {
     if (event.action === 'delete') {
-      this.confirmDeleteUser(event.user.id);
+      this.confirmDeleteUser(event.user);
     } else {
       this.openUserDialog(event.action, event.user);
     }
@@ -72,22 +72,22 @@ export class UserComponent implements OnInit {
   }
 
 
-  confirmDeleteUser(userId: number): void {
+  confirmDeleteUser(user:User): void {
     let entityName = 'User'
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         title: 'Delete ' + entityName ,
-        message: `Are you sure you want to delete "${entityName}"? This action cannot be undone.`,
+        message: `Are you sure you want to delete "${user.firstName + ' ' + user.lastName}"? This action cannot be undone.`,
         requireInput: true,
-        expectedInput: entityName, // Entity name to be typed as confirmation
+        expectedInput: `${user.firstName + ' ' + user.lastName}`, // Entity name to be typed as confirmation
       },
     });
   
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.confirmed) {
         console.log('Entity deleted:', entityName);
-        this.userStore.deleteUser(userId);
-        this.filteredUsers = this.allUsers.filter((user) => user.id !== userId); // Update filtered list
+        this.userStore.deleteUser(user.id);
+        this.filteredUsers = this.allUsers.filter((data) => data.id !== user.id); // Update filtered list
       } else {
         console.log('Deletion cancelled');
       }

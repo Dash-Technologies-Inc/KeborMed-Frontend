@@ -29,9 +29,8 @@
       <!-- Email Column -->
       <ng-container cdkColumnDef="email">
         <th cdk-header-cell *cdkHeaderCellDef> Email </th>
-        <td cdk-cell *cdkCellDef="let user">
-          <a href="mailto:{{ user.email }}">{{ user.email }}</a>
-        </td>
+        <td cdk-cell *cdkCellDef="let user"> {{ user.email }} </td>
+
       </ng-container>
 
       <ng-container cdkColumnDef="birthDate">

@@ -8,5 +8,11 @@
   "Total Companies": "Total Companies",
   "Create": "Create",
   "Import": "Import",
-  "KeborMed": "KeborMed"
+  "KeborMed": "KeborMed",
+  "Company":"Company",
+  "numberOfUsers": "Number of Users",
+  "companyName": "Company Name",
+  "create": "Create",
+  "import": "Import"
+
 }

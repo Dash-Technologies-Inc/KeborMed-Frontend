@@ -13,17 +13,17 @@
 
   <!-- Details Section -->
   <div class="details">
-    <h2>Users Per Company</h2>
+    <h2>{{'Users' | translate}} Per {{'Company' | translate}}</h2>
     <table cdk-table [dataSource]="dataSource" class="custom-table">
       <!-- Company Name Column -->
       <ng-container cdkColumnDef="companyName">
-        <th cdk-header-cell *cdkHeaderCellDef> Company Name </th>
+        <th cdk-header-cell *cdkHeaderCellDef> {{'companyname' | translate}} </th>
         <td cdk-cell *cdkCellDef="let element"> {{ element.companyName }} </td>
       </ng-container>
 
       <!-- Number of Users Column -->
       <ng-container cdkColumnDef="numberOfUsers">
-        <th cdk-header-cell *cdkHeaderCellDef> Number of Users </th>
+        <th cdk-header-cell *cdkHeaderCellDef> {{'numberOfUsers' | translate}} </th>
         <td cdk-cell *cdkCellDef="let element"> {{ element.numberOfUsers }} </td>
       </ng-container>
 

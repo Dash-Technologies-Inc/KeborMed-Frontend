@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-form',
@@ -16,7 +17,8 @@ export class UserFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: { mode: 'viewDetails' | 'edit' | 'create'; user: User | null },
-    private dialogRef: MatDialogRef<UserFormComponent>
+    private dialogRef: MatDialogRef<UserFormComponent>,
+    public userService: UserService
   ) {
     this.mode = data.mode;
     this.user = data.user;
@@ -45,15 +47,21 @@ export class UserFormComponent implements OnInit {
   onSave(): void {
     if (this.userForm.valid) {
       const formData = this.userForm.getRawValue(); // Get values, including disabled fields
-      this.dialogRef.close({data :formData,mode :this.mode}); // Pass the form data back
+      this.dialogRef.close({ data: formData, mode: this.mode }); // Pass the form data back
     } else {
       this.userForm.markAllAsTouched(); // Show validation errors
     }
   }
-  
-  editMode()
-  {
-     this.mode = "edit";
+
+  formatDate(date: string | undefined): string {
+    if (!date) {
+      return '';
+    }
+    return this.userService.formatDate(date);
+  }
+
+  editMode() {
+    this.mode = "edit";
   }
 
   onClose(): void {

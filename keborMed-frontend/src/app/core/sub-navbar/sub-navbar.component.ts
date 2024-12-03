@@ -4,11 +4,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserFormComponent } from '../../modules/user/user-form/user-form.component';
 import { UserStore } from '../../modules/user/user.store';
 import { ImportDialogComponent } from '../../modules/user/import-dialog/import-dialog.component';
+import { SettingsComponent } from '../../modules/settings/view-page/settings.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sub-navbar',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './sub-navbar.component.html',
   styleUrl: './sub-navbar.component.scss'
 })
