@@ -13,6 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { ImportDialogComponent } from './import-dialog/import-dialog.component';
 import { ListSearchComponent } from '../../shared/list-search/list-search.component';
 import { PaginationComponent } from '../../shared/pagination/pagination.component';
+import { ConfirmDirective } from '../../shared/directive/confirmation.directive';
+import { DropdownMenuDirective } from '../../shared/directive/dropdown-directive/dropdown.directive';
 
 @NgModule({
   declarations: [UserComponent,UserListComponent,UserFormComponent,ImportDialogComponent],
@@ -27,6 +29,8 @@ import { PaginationComponent } from '../../shared/pagination/pagination.componen
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    ConfirmDirective,
+    DropdownMenuDirective,
     RouterModule.forChild([
       { path: '', component: UserComponent },
     ]),
